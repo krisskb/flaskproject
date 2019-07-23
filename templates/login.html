@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Login User
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col"></div>
+    <div class="col-6">
+<form action="{{ url_for('login') }}" method="post" class="form-control border rounded">
+   <input type="text" name="uname" placeholder="Enter Your user Name"><br>
+   <input type="password" name="upwd" placeholder="Enter password"><br>
+    <button>Login</button>
+</form>
+        <span>Not a user yet </span><a href="{{ url_for('register') }}" > <button>Signup</button> </a>
+
+</div>
+<div class="col"></div>
+</div>
+
+{% endblock %}

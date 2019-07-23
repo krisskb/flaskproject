@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Books Catalog</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <style>
+#mhead {
+margin-top : 2%;
+padding-bottom : -2%;
+}
+div.navbar {
+background-color: #dee;
+border-radius: 10px;
+font-size: 1.2em;
+}
+form * {
+margin-bottom : 5%;
+display: block;
+}
+nav {
+display : inline;
+float: left;
+}
+        </style>
+    </head>
+    <body>
+    <div  id="mhead">
+        <h3 class="text-center">Books Catalog</h3>
+    </div>
+    <div class="container">
+        <div class="row navbar">
+        <nav class="navbar" id="bignav">
+            <ul class="nav">
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a> </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('searchbooks') }}">Search</a> </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('register') }}">My profile</a> </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+        <nav id="smallnav">
+            <button type="button" class="btn" data-toggle="collapse" data-target="#demo"><i class="fa fa-bars"></i></button>
+  			<div id="demo" class="collapse">
+            <div class="list-group">
+              <a href="{{ url_for('login') }}" class="list-group-item list-group-item-action">Login</a>
+              <a href="#" class="list-group-item list-group-item-action">Search</a>
+              <a href="#" class="list-group-item list-group-item-action">My profile</a>
+              <a href="#" class="list-group-item list-group-item-action">Logout</a>
+            </div>
+			</div>
+        </nav>
+        {% if userdata %}
+        <nav class="text-right">User {{ userdata['username'] }} logged in.</nav>
+        {% endif %}
+        {% if message %}
+        <span><i>{{ message }}</i></span>
+        {% endif %}
+        </div>
+        <div>
+        <h3>{% block heading %}{% endblock %}</h3>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </div>
+    </body>
+</html>
